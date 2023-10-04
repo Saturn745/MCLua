@@ -26,6 +26,7 @@ class LuaScriptManager(private val plugin: LuaLink) {
         globals.set("script", script)
         globals.set("print", PrintOverride(this.plugin))
         globals.set("utils", LuaUtils(this.plugin, script)) // Passing script to LuaUtils for state
+        globals.set("scheduler", LuaScheduler(this.plugin, script)) // Passing script to LuaScheduler for state
         globals.set("enums", LuaEnumWrapper())
         globals.set("import", LuaImport())
         globals.set("addons", LuaAddons())

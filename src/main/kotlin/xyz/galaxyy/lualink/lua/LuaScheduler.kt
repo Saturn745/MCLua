@@ -3,12 +3,12 @@ package xyz.galaxyy.lualink.lua
 import com.github.only52607.luakt.CoerceKotlinToLua
 import org.bukkit.scheduler.BukkitRunnable
 import org.luaj.vm2.LuaTable
+import org.luaj.vm2.LuaValue
 import org.luaj.vm2.Varargs
 import org.luaj.vm2.lib.VarArgFunction
 import xyz.galaxyy.lualink.LuaLink
 
 class LuaScheduler(private val plugin: LuaLink, private val script: LuaScript) : LuaTable() {
-
     init {
 
         // schedules single task to be executed on the next tick
@@ -28,8 +28,8 @@ class LuaScheduler(private val plugin: LuaLink, private val script: LuaScript) :
                 }.runTask(plugin)
                 // adding task id to the list
                 script.tasks.add(task.taskId)
-                // returning task
-                return CoerceKotlinToLua.coerce(task)
+                // returning nil
+                return LuaValue.NIL
             }
         })
 
@@ -50,17 +50,17 @@ class LuaScheduler(private val plugin: LuaLink, private val script: LuaScript) :
                 }.runTaskAsynchronously(plugin)
                 // adding task id to the list
                 script.tasks.add(task.taskId)
-                // returning task
-                return CoerceKotlinToLua.coerce(task)
+                // returning nil
+                return LuaValue.NIL
             }
         })
 
         // schedules single task to be executed after n ticks has passed
-        this.set("runLater", object: VarArgFunction() {
+        this.set("runDelayed", object: VarArgFunction() {
             override fun invoke(args: Varargs?): Varargs {
                 // validating function call
                 if (args == null || args.narg() != 2)
-                    throw IllegalArgumentException("runLater expects 2 arguments: callback, delay")
+                    throw IllegalArgumentException("runDelayed expects 2 arguments: callback, delay")
                 // parsing function arguments
                 val callback = args.arg(1).checkfunction()
                 val delay = args.arg(2).checklong()
@@ -83,11 +83,11 @@ class LuaScheduler(private val plugin: LuaLink, private val script: LuaScript) :
         })
 
         // schedules single (asynchronous) task to be executed after n ticks has passed
-        this.set("runLaterAsync", object: VarArgFunction() {
+        this.set("runDelayedAsync", object: VarArgFunction() {
             override fun invoke(args: Varargs?): Varargs {
                 // validating function call
                 if (args == null || args.narg() != 2)
-                    throw IllegalArgumentException("runLaterAsync expects 2 arguments: callback, delay")
+                    throw IllegalArgumentException("runDelayedAsync expects 2 arguments: callback, delay")
                 // parsing function arguments
                 val callback = args.arg(1).checkfunction()
                 val delay = args.arg(2).checklong()
@@ -110,11 +110,11 @@ class LuaScheduler(private val plugin: LuaLink, private val script: LuaScript) :
         })
 
         // schedules repeating task to be started after n ticks has passed and repeated each m ticks
-        this.set("runTimer", object: VarArgFunction() {
+        this.set("runRepeating", object: VarArgFunction() {
             override fun invoke(args: Varargs?): Varargs {
                 // validating function call
                 if (args == null || args.narg() != 3)
-                    throw IllegalArgumentException("runTimer expects 3 arguments: callback, delay, period")
+                    throw IllegalArgumentException("runRepeating expects 3 arguments: callback, delay, period")
                 // parsing function arguments
                 val callback = args.arg(1).checkfunction()
                 val delay = args.arg(2).checklong()
@@ -138,11 +138,11 @@ class LuaScheduler(private val plugin: LuaLink, private val script: LuaScript) :
         })
 
         // schedules repeating (asynchronous) task to be started after n ticks has passed and repeated each m ticks
-        this.set("runTimerAsync", object: VarArgFunction() {
+        this.set("runRepeatingAsync", object: VarArgFunction() {
             override fun invoke(args: Varargs?): Varargs {
                 // validating function call
                 if (args == null || args.narg() != 3)
-                    throw IllegalArgumentException("runTimerAsync expects 3 arguments: callback, delay, period")
+                    throw IllegalArgumentException("runRepeatingAsync expects 3 arguments: callback, delay, period")
                 // parsing function arguments
                 val callback = args.arg(1).checkfunction()
                 val delay = args.arg(2).checklong()
@@ -166,5 +166,4 @@ class LuaScheduler(private val plugin: LuaLink, private val script: LuaScript) :
         })
 
     }
-
 }

@@ -6,9 +6,9 @@ For new Lua users, [this community-contributed documentation](https://devdocs.io
 <br />
 
 ### Navigation
-- **[Home](main.md#navigation)**
+- **[Home](home.md#navigation)**
 - **External Libraries/API**
-  - **[External Libraries](#external-libraries)**
+  - **[Home](#external-libraries)**
   - **[Configuration Example](#configuration-example)**
 - **[Addons](addons.md#navigation)**
 - **[Reference](reference.md#navigation)**

@@ -6,11 +6,11 @@ For new Lua users, [this community-contributed documentation](https://devdocs.io
 <br />
 
 ### Navigation
-- **[Home](main.md#navigation)**
+- **[Home](home.md#navigation)**
 - **[External Libraries/API](external_libraries.md#navigation)**
 - **[Addons](addons.md#navigation)**
 - **Reference**
-  - [Reference](#reference)
+  - [Home](#reference)
   - [LuaScript](#luascript)
   - [LuaUtils](#luautils)
   - [LuaLogger](#lualogger)

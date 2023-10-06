@@ -7,20 +7,21 @@ For new Lua users, [this community-contributed documentation](https://devdocs.io
 
 ### Navigation
 - **Home**
-  - **[Basics](#1-basics)**
-  - **[Script Life-cycle](#2-script-life-cycle)**
-  - **[Importing](#3-importing)**
-  - **[Constructors and Instances](#4-constructors-and-instances)**
-  - **[Commands](#5-commands)**
-  - **[Events](#6-events)**
-  - **[Scheduler](#7-scheduler)**
-- **[External Libraries/API](/docs/external_libraries.md#navigation)**
-- **[Addons](/docs/addons.md#navigation)**
-- **[Reference](/docs/reference.md#navigation)**
+  - **[Basics](#basics)**
+  - **[Script Life-cycle](#script-life-cycle)**
+  - **[Importing](#importing)**
+  - **[Constructors and Instances](#constructors-and-instances)**
+  - **[Commands](#commands)**
+  - **[Events](#events)**
+  - **[Scheduler](#scheduler)**
+  - **[Examples](#examples)**
+- **[External Libraries/API](external_libraries.md#navigation)**
+- **[Addons](addons.md#navigation)**
+- **[Reference](reference.md#navigation)**
 
 <br />
 
-### 1. Basics
+### Basics
 In your Lua scripts, you have access to the following global variables that are set in every script.
 - `script` - represents the current Lua script.
 - `print` - overrides the default `print` function to log messages to the plugin's logger.
@@ -33,7 +34,7 @@ More information about these variables and their functions can be found on the [
 
 <br />
 
-### 2. Script Life-cycle
+### Script Life-cycle
 Scripts are automatically loaded after server has been fully started. They can also be loaded, unloaded or reloaded manually using commands.
 ```lua
 -- Called when script has been loaded.
@@ -49,7 +50,7 @@ end)
 
 <br />
 
-### 3. Importing
+### Importing
 Each referenced Java and Kotlin class must be imported using the `import` keyword.
 ```lua
 local Bukkit = import "org.bukkit.Bukkit"
@@ -65,7 +66,7 @@ end)
 
 <br />
 
-### 4. Constructors and Instances
+### Constructors and Instances
 New instances of Java and Kotlin classes can be created as follows.
 ```lua
 local Bukkit = import "org.bukkit.Bukkit"
@@ -86,7 +87,7 @@ end)
 
 <br />
 
-### 5. Commands
+### Commands
 Non-complex commands can be created with little effort using built-in API.
 ```lua
 local Bukkit = import "org.bukkit.Bukkit"
@@ -116,7 +117,7 @@ end, {
 
 <br />
 
-### 6. Events
+### Events
 Bukkit events can be hooked into relatively easily.
 ```lua
 -- Called when player joins the server.
@@ -132,7 +133,7 @@ end)
 
 <br />
 
-### 7. Scheduler
+### Scheduler
 Scheduler can be used to register single-use, delayed or repeating tasks.
 ```lua
 -- Schedules task to be run on the next tick.

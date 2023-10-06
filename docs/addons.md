@@ -6,10 +6,10 @@ For new Lua users, [this community-contributed documentation](https://devdocs.io
 <br />
 
 ### Navigation
-- **[Home](main.md#navigation)**
+- **[Home](home.md#navigation)**
 - **[External Libraries/API](external_libraries.md#navigation)**
 - **Addons**
-  - **[Addons](#addons)**
+  - **[Home](#addons)**
   - **[Usage Example](#usage-example)**
   - **[Existing Addons](#existing-addons)**
   - **[Creating Addon](#creating-addon)**

@@ -14,9 +14,11 @@ For new Lua users, [this community-contributed documentation](https://devdocs.io
   - [LuaScript](#luascript)
   - [LuaUtils](#luautils)
   - [LuaLogger](#lualogger)
+  - [PrintOverride](#printoverride)
   - [LuaScheduler](#luascheduler)
   - [LuaEnumWrapper](#luaenumwrapper)
   - [LuaEnum](#luaenum)
+  - [LuaImport](#luaimport)
   - [LuaAddons](#luaaddons)
 
 <br />
@@ -179,6 +181,22 @@ Click the link to view `LuaUtils` class in the source code.
 <br />
 <br />
 
+### [PrintOverride](https://github.com/LuaLink/LuaLink/blob/main/src/main/kotlin/xyz/galaxyy/lualink/lua/misc/PrintOverride.kt)
+Click the link to view `PrintOverride` class in the source code.
+
+<br />
+
+`print(message: string): void`
+
+&nbsp;&nbsp; **Description**  
+&nbsp;&nbsp;&nbsp;&nbsp; Logs a message to the plugin logger. Override for built-in `print` function.
+
+&nbsp;&nbsp; **Parameters**  
+&nbsp;&nbsp;&nbsp;&nbsp; `message` - the message to log.
+
+<br />
+<br />
+
 ### [LuaScheduler](https://github.com/LuaLink/LuaLink/blob/main/src/main/kotlin/xyz/galaxyy/lualink/lua/LuaScheduler.kt)
 Click the link to view `LuaScheduler` class in the source code.
 
@@ -325,6 +343,22 @@ Click the link to view `LuaEnum<E>` class in the source code.
 <br />
 <br />
 
+### [LuaImport](https://github.com/LuaLink/LuaLink/blob/main/src/main/kotlin/xyz/galaxyy/lualink/lua/LuaImport.kt)
+Click the link to view `LuaImport` class in the source code.
+
+<br />
+
+`import(classname: string): ?`
+
+&nbsp;&nbsp; **Description**  
+&nbsp;&nbsp;&nbsp;&nbsp; Returns a reference to the imported Java/Kotlin class. This function is available globally.
+
+&nbsp;&nbsp; **Parameters**  
+&nbsp;&nbsp;&nbsp;&nbsp; `classname` - fully-qualified name of the Java/Kotlin class to import.
+
+<br />
+<br />
+
 ### [LuaAddons](https://github.com/LuaLink/LuaLink/blob/main/src/main/kotlin/xyz/galaxyy/lualink/lua/LuaAddons.kt)
 Click the link to view `LuaAddons` class in the source code.
 
@@ -344,5 +378,3 @@ Click the link to view `LuaAddons` class in the source code.
 
 &nbsp;&nbsp; **Parameters**  
 &nbsp;&nbsp;&nbsp;&nbsp; `name` - case-sensitive name of the addon.
-
-<br />

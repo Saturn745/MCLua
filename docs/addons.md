@@ -6,16 +6,14 @@ For new Lua users, [this community-contributed documentation](https://devdocs.io
 <br />
 
 ### Navigation
-1. **[Basics](main.md#1-basics)**
-2. **[Script Life-cycle](main.md#2-script-life-cycle)**
-3. **[Importing](main.md#3-importing)**
-4. **[Constructors and Instances](main.md#4-constructors-and-instances)**
-5. **[Commands](main.md#5-commands)**
-6. **[Events](main.md#6-events)**
-7. **[Scheduler](main.md#7-scheduler)**
-- **[External Libraries/API](external_libraries.md)**
+- **[Home](main.md#navigation)**
+- **[External Libraries/API](external_libraries.md#navigation)**
 - **Addons**
-- **[Reference](reference.md)**
+  - **[Addons](#addons)**
+  - **[Usage Example](#usage-example)**
+  - **[Existing Addons](#existing-addons)**
+  - **[Creating Addon](#creating-addon)**
+- **[Reference](reference.md#navigation)**
 
 <br />
 

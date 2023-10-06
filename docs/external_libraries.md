@@ -14,8 +14,8 @@ For new Lua users, [this community-contributed documentation](https://devdocs.io
 6. **[Events](main.md#6-events)**
 7. **[Scheduler](main.md#7-scheduler)**
 - **External Libraries/API**
-- **[Addons](addons.md)**
-- **[Reference](reference.md)**
+- **[Addons](addons.md#addons)**
+- **[Reference](reference.md#reference)**
 
 <br />
 

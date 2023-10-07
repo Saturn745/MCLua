@@ -36,7 +36,7 @@ Click the link to view `LuaScript` class in the source code.
 `script: LuaScript`
 
 &nbsp;&nbsp; **Description**  
-&nbsp;&nbsp;&nbsp;&nbsp; LuaScript class, accessed with `script`, represents a Lua script that can be executed within your LuaLink plugin.
+&nbsp;&nbsp;&nbsp;&nbsp; Returns LuaScript instance representing a Lua script, granting access to its core functions.
 
 <br />
 
@@ -112,7 +112,7 @@ Click the link to view `LuaUtils` class in the source code.
 `utils: LuaUtils`
 
 &nbsp;&nbsp; **Description**  
-&nbsp;&nbsp;&nbsp;&nbsp; The LuaUtils class, accessed with `utils`, provides utility functions for Lua scripts.
+&nbsp;&nbsp;&nbsp;&nbsp; Returns LuaUtils instance, granting access to various utility functions.
 
 <br />
 
@@ -139,14 +139,14 @@ Click the link to view `LuaUtils` class in the source code.
 <br />
 
 ### [LuaLogger](https://github.com/LuaLink/LuaLink/blob/main/src/main/kotlin/xyz/galaxyy/lualink/lua/misc/LuaLogger.kt)
-Click the link to view `LuaUtils` class in the source code.
+Click the link to view `LuaLogger` class in the source code.
 
 <br />
 
-`logger: LuaUtils`
+`logger: LuaLogger`
 
 &nbsp;&nbsp; **Description**  
-&nbsp;&nbsp;&nbsp;&nbsp; The LuaLogger class, accessed with `logger`, allows you to log messages from your Lua scripts.
+&nbsp;&nbsp;&nbsp;&nbsp; Returns LuaLogger instance, granting access to various logging functions.
 
 <br />
 
@@ -205,7 +205,7 @@ Click the link to view `LuaScheduler` class in the source code.
 `scheduler: LuaScheduler`
 
 &nbsp;&nbsp; **Description**  
-&nbsp;&nbsp;&nbsp;&nbsp; The LuaScheduler class, accessed with `scheduler`, provides functions to register single-use, delayed or repeating tasks.
+&nbsp;&nbsp;&nbsp;&nbsp; Returns LuaScheduler instance, granting access to scheduler-related functions.
 
 <br />
 
@@ -229,7 +229,7 @@ Click the link to view `LuaScheduler` class in the source code.
 
 <br />
 
-`scheduler.runDelayed(callback: (task: BukkitTask) -> void, delay: number): void`
+`scheduler.runDelayed(callback: (task: BukkitTask) -> void, delay: number): BukkitTask`
 
 &nbsp;&nbsp; **Description**  
 &nbsp;&nbsp;&nbsp;&nbsp; Schedules task to be run after `delay` ticks has passed.
@@ -240,7 +240,7 @@ Click the link to view `LuaScheduler` class in the source code.
 
 <br />
 
-`scheduler.runDelayedAsync(callback: (task: BukkitTask) -> void, delay: number): void`
+`scheduler.runDelayedAsync(callback: (task: BukkitTask) -> void, delay: number): BukkitTask`
 
 &nbsp;&nbsp; **Description**  
 &nbsp;&nbsp;&nbsp;&nbsp; Schedules asynchronous task to be run after `delay` ticks has passed.
@@ -251,7 +251,7 @@ Click the link to view `LuaScheduler` class in the source code.
 
 <br />
 
-`scheduler.runRepeating(callback: (task: BukkitTask) -> void, delay: number, period: number): void`
+`scheduler.runRepeating(callback: (task: BukkitTask) -> void, delay: number, period: number): BukkitTask`
 
 &nbsp;&nbsp; **Description**  
 &nbsp;&nbsp;&nbsp;&nbsp; Schedules task to be run after `delay` ticks has passed, and repeated every `delay` ticks.
@@ -263,7 +263,7 @@ Click the link to view `LuaScheduler` class in the source code.
 
 <br />
 
-`scheduler.runRepeatingAsync(callback: (task: BukkitTask) -> void, delay: number, period: number): void`
+`scheduler.runRepeatingAsync(callback: (task: BukkitTask) -> void, delay: number, period: number): BukkitTask`
 
 &nbsp;&nbsp; **Description**  
 &nbsp;&nbsp;&nbsp;&nbsp; Schedules asynchronous task to be run after `delay` ticks has passed, and repeated every `delay` ticks.
@@ -284,7 +284,7 @@ Click the link to view `LuaEnumWrapper` class in the source code.
 `enums: LuaEnumWrapper`
 
 &nbsp;&nbsp; **Description**  
-&nbsp;&nbsp;&nbsp;&nbsp; The LuaUtils class, accessed with `utils`, provides utility functions for Lua scripts.
+&nbsp;&nbsp;&nbsp;&nbsp; Returns LuaEnumWrapper instance, granting access to commonly-used Bukkit enums.
 
 <br />
 
@@ -367,7 +367,7 @@ Click the link to view `LuaAddons` class in the source code.
 `addons: LuaAddons`
 
 &nbsp;&nbsp; **Description**  
-&nbsp;&nbsp;&nbsp;&nbsp; The LuaAddons class, accessed with `addons`, provides a way to get instance of loaded addon.
+&nbsp;&nbsp;&nbsp;&nbsp; Returns LuaAddons instance, providing a way to get instance of loaded addon.
 
 <br />
 

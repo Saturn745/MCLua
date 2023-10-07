@@ -18,4 +18,4 @@ To use the LuaLink plugin, you need the following:
 <br />
 
 ## Documentation
-Documentation and examples are available **[here](docs/home.md)**.
+Documentation and examples are available [here](docs/home.md).

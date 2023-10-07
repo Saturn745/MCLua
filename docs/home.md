@@ -7,14 +7,14 @@ For new Lua users, [this community-contributed documentation](https://devdocs.io
 
 ### Navigation
 - **Home**
-  - **[Basics](#basics)**
-  - **[Script Life-cycle](#script-life-cycle)**
-  - **[Importing](#importing)**
-  - **[Constructors and Instances](#constructors-and-instances)**
-  - **[Commands](#commands)**
-  - **[Events](#events)**
-  - **[Scheduler](#scheduler)**
-  - **[Examples](#examples)**
+  - [Basics](#basics)
+  - [Script Life-cycle](#script-life-cycle)
+  - [Importing](#importing)
+  - [Constructors and Instances](#constructors-and-instances)
+  - [Commands](#commands)
+  - [Events](#events)
+  - [Scheduler](#scheduler)
+  - [Examples](#examples)
 - **[External Libraries/API](external_libraries.md#navigation)**
 - **[Addons](addons.md#navigation)**
 - **[Reference](reference.md#navigation)**
@@ -37,12 +37,12 @@ More information about these variables and their functions can be found on the [
 ### Script Life-cycle
 Scripts are automatically loaded after server has been fully started. They can also be loaded, unloaded or reloaded manually using commands.
 ```lua
--- Called when script has been loaded.
+-- Called after the script has been successfully loaded.
 script.onLoad(function()
     script.logger.info("Script has been loaded.")
 end)
 
--- Called before unloading script.
+-- Called before the script is attempted to be unloaded.
 script.onUnload(function()
     script.logger.info("Script is about to be unloaded.")
 end)
@@ -137,17 +137,17 @@ end)
 Scheduler can be used to register single-use, delayed or repeating tasks.
 ```lua
 -- Schedules task to be run on the next tick.
-scheduler.run(function()
+script.run(function()
     -- Whatever belongs to the task goes here.
 end)
 
--- Schedules task to be run after 20 ticks has passed. Task function parameter can be ommited if not used. 
-scheduler.runDelayed(function(task)
+-- Schedules task to be run after 20 ticks has passed. Task function parameter can be omitted if not used. 
+script.runDelayed(function(task)
     -- Whatever belongs to the task goes here.
 end, 20)
 
--- Schedules task to be run after 20 ticks has passed, and repeated every 160 ticks. Task function parameter can be ommited if not used. 
-scheduler.runRepeating(function(task)
+-- Schedules task to be run after 20 ticks has passed, and repeated every 160 ticks. Task function parameter can be omitted if not used. 
+script.runRepeating(function(task)
     -- Whatever belongs to the task goes here.
 end, 20, 160)
 ```
@@ -155,11 +155,11 @@ end, 20, 160)
 Tasks can also be run asynchronously, but please note that neither the Bukkit API nor the LuaLink API is guaranteed to be thread-safe.
 ```lua
 -- Schedules asynchronous task to be run on the next tick.
-scheduler.runAsync(callback: () -> void): void
--- Schedules asynchronous task to be run after {delay} ticks has passed. Task function parameter can be ommited if not used. 
-scheduler.runDelayedAsync(callback: (task: BukkitTask) -> void, delay: number): BukkitTask
--- Schedules task to be run after {delay} ticks has passed, and repeated every {period} ticks. Task function parameter can be ommited if not used. 
-scheduler.runRepeatingAsync(callback: (task: BukkitTask) -> void, delay: number, period: number): BukkitTask
+script.runAsync(callback: () -> void): void
+-- Schedules asynchronous task to be run after {delay} ticks has passed. Task function parameter can be omitted if not used. 
+script.runDelayedAsync(callback: (task: BukkitTask) -> void, delay: number): BukkitTask
+-- Schedules task to be run after {delay} ticks has passed, and repeated every {period} ticks. Task function parameter can be omitted if not used. 
+script.runRepeatingAsync(callback: (task: BukkitTask) -> void, delay: number, period: number): BukkitTask
 ```
 
 <br />

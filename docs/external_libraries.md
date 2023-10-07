@@ -8,8 +8,8 @@ For new Lua users, [this community-contributed documentation](https://devdocs.io
 ### Navigation
 - **[Home](home.md#navigation)**
 - **External Libraries/API**
-  - **[Home](#external-libraries)**
-  - **[Configuration Example](#configuration-example)**
+  - [Home](#external-libraries)
+  - [Configuration Example](#configuration-example)
 - **[Addons](addons.md#navigation)**
 - **[Reference](reference.md#navigation)**
 

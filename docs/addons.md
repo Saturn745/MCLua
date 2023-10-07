@@ -39,6 +39,7 @@ In this example, we are getting instance of `MiniPlaceholders` addon provided by
 ### Existing Addons
 List of both official and community-made addons. Please refer to their respective documentation to learn how to interact with them.
 - [LuaLink-MiniPlaceholders](https://github.com/LuaLink/LuaLink-MiniPlaceholders) - allows to use [MiniPlaceholders'](https://github.com/MiniPlaceholders/MiniPlaceholders) placeholders within LuaLink scripts.
+- [LuaLink-PlaceholderAPI](https://github.com/Grabsky/LuaLink-PlaceholderAPI) - allows to use [PlaceholderAPI](https://github.com/PlaceholderAPI/PlaceholderAPI) placeholders within LuaLink scripts.
 - [LuaLink-Vault](https://github.com/LuaLink/LuaLink-Vault) - allows to interact with [Vault](https://github.com/milkbowl/Vault) plugin.
 
 <br />

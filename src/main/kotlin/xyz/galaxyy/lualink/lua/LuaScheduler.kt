@@ -1,10 +1,12 @@
 package xyz.galaxyy.lualink.lua
 
 import com.github.only52607.luakt.CoerceKotlinToLua
+import org.bukkit.Bukkit
 import org.bukkit.scheduler.BukkitRunnable
 import org.luaj.vm2.LuaTable
 import org.luaj.vm2.LuaValue
 import org.luaj.vm2.Varargs
+import org.luaj.vm2.lib.OneArgFunction
 import org.luaj.vm2.lib.VarArgFunction
 import xyz.galaxyy.lualink.LuaLink
 
@@ -162,6 +164,24 @@ class LuaScheduler(private val plugin: LuaLink, private val script: LuaScript) :
                 script.tasks.add(task.taskId)
                 // returning task
                 return CoerceKotlinToLua.coerce(task)
+            }
+        })
+
+        // cancels bukkit task with specified id
+        this.set("cancelTask", object: OneArgFunction() {
+            override fun call(arg: LuaValue?): LuaValue {
+                // validating function call
+                if (arg == null || !arg.isint())
+                    throw IllegalArgumentException("cancelTask expects 1 argument: taskId")
+                // parsing function arguments
+                val taskId = arg.checkint()
+                // cancelling the task; should not throw exception when cancelled directly with BukkitTask#cancel
+                Bukkit.getScheduler().cancelTask(taskId)
+                // removing task from the list
+                if (script.tasks.contains(taskId))
+                    script.tasks.remove(taskId)
+                // returning nil
+                return LuaValue.NIL
             }
         })
 

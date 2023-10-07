@@ -126,16 +126,6 @@ Click the link to view `LuaUtils` class in the source code.
 &nbsp;&nbsp;&nbsp;&nbsp; `class` - the name of the class to check against.
 
 <br />
-
-`utils.cancelTask(taskId: number): void`
-
-&nbsp;&nbsp; **Description**  
-&nbsp;&nbsp;&nbsp;&nbsp; Cancels a currently running Bukkit task.
-
-&nbsp;&nbsp; **Parameters**  
-&nbsp;&nbsp;&nbsp;&nbsp; `taskId` - the Bukkit task id.
-
-<br />
 <br />
 
 ### [LuaLogger](https://github.com/LuaLink/LuaLink/blob/main/src/main/kotlin/xyz/galaxyy/lualink/lua/misc/LuaLogger.kt)
@@ -272,6 +262,16 @@ Click the link to view `LuaScheduler` class in the source code.
 &nbsp;&nbsp;&nbsp;&nbsp; `callback` - function to be executed.  
 &nbsp;&nbsp;&nbsp;&nbsp; `delay` - delay measured in ticks.  
 &nbsp;&nbsp;&nbsp;&nbsp; `period` - period of task re-occurrence measured in ticks.
+
+<br />
+
+`scheduler.cancelTask(taskId: number): void`
+
+&nbsp;&nbsp; **Description**  
+&nbsp;&nbsp;&nbsp;&nbsp; Cancels a currently running (or scheduled) Bukkit task.
+
+&nbsp;&nbsp; **Parameters**  
+&nbsp;&nbsp;&nbsp;&nbsp; `taskId` - the Bukkit task id.
 
 <br />
 <br />

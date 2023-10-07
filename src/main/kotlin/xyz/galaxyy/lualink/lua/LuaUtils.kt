@@ -1,13 +1,11 @@
 package xyz.galaxyy.lualink.lua
 
-import org.bukkit.Bukkit
 import org.luaj.vm2.LuaTable
 import org.luaj.vm2.LuaValue
 import org.luaj.vm2.Varargs
-import org.luaj.vm2.lib.OneArgFunction
 import org.luaj.vm2.lib.VarArgFunction
 
-class LuaUtils(private val script: LuaScript) : LuaTable() {
+class LuaUtils : LuaTable() {
     init {
 
         this.set("instanceOf", object: VarArgFunction() {
@@ -31,24 +29,6 @@ class LuaUtils(private val script: LuaScript) : LuaTable() {
 
                 // Check if the object's class is assignable from the specified class
                 return LuaValue.valueOf(specifiedClass.isAssignableFrom(objClass))
-            }
-        })
-
-        this.set("cancelTask", object: OneArgFunction() {
-            override fun call(arg: LuaValue?): LuaValue {
-                if (arg == null || !arg.isint()) {
-                    throw IllegalArgumentException("cancelTask expects 1 argument: taskId")
-                }
-
-                val taskId = arg.checkint()
-
-                Bukkit.getScheduler().cancelTask(taskId)
-
-                if (script.tasks.contains(taskId)) {
-                    script.tasks.remove(taskId)
-                }
-
-                return LuaValue.NIL
             }
         })
 

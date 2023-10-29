@@ -101,7 +101,8 @@ class LuaScript(private val plugin: LuaLink, val file: File, val globals: Global
             val listener = object : Listener {}
 
             this.plugin.server.pluginManager.registerEvent(eventClass as Class<out org.bukkit.event.Event>, listener, EventPriority.NORMAL, { _, eventObj ->
-                callback.invoke(CoerceKotlinToLua.coerce(eventObj))
+                if (eventClass.isInstance(eventObj))
+                    callback.invoke(CoerceKotlinToLua.coerce(eventObj))
             }, this.plugin)
 
             this.listeners.add(listener)

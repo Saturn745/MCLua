@@ -6,7 +6,7 @@ plugins {
     kotlin("jvm") version "1.9.21"
     id("net.minecrell.plugin-yml.paper") version "0.6.0"
     id("com.modrinth.minotaur") version "2.8.7"
-    id("io.papermc.hangar-publish-plugin") version "0.1.0"
+    id("io.papermc.hangar-publish-plugin") version "0.1.1"
     id("maven-publish")
     application
 }

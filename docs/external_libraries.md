@@ -25,7 +25,14 @@ Starting from build [15](https://github.com/LuaLink/LuaLink/commit/65ce0ab517260
 {
     // Repositories to be used for dependency resolution.
     "repositories": {
-        "MavenCentral": "https://repo.maven.apache.org/maven2/"
+        // Repository definition using simple format.
+        "MavenCentral": "https://repo.maven.apache.org/maven2/",
+        // Repository definition with credentials authentication.
+        "SomePrivateRepository": {
+            "url": "https://repo.example.com/private",
+            "username": "RepositoryUsername",
+            "password": "SecretRepositoryPassword123"
+        }
     },
     // Dependencies to be downloaded and exposed to the scripting runtime.
     // Entries must be specified using Maven coordinate format: groupId:artifactId:version
@@ -35,6 +42,6 @@ Starting from build [15](https://github.com/LuaLink/LuaLink/commit/65ce0ab517260
 }
 ```
 
-In this example, we are adding stefvanschie's [IF](https://github.com/stefvanschie/IF) library of version `0.10.11` from [Maven Central](https://repo.maven.apache.org/maven2/) repository.
+In this example, we are adding stefvanschie's [IF](https://github.com/stefvanschie/IF) library of version `0.10.11` from [Maven Central](https://repo.maven.apache.org/maven2/) repository. You can also see how to add and authenticate with a private repository using credentials, which might be essential when working with closed-source projects or [GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry).
 
-Now, after restarting the server, we should be able to import and access any class that belongs to this library.
+After restarting the server, we should be able to import and access any class that belongs to specified library(-ies).

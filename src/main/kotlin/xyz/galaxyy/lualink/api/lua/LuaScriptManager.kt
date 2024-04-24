@@ -1,4 +1,4 @@
-package xyz.galaxyy.lualink.lua
+package xyz.galaxyy.lualink.api.lua
 
 import org.luaj.vm2.LuaError
 import xyz.galaxyy.lualink.LuaLink

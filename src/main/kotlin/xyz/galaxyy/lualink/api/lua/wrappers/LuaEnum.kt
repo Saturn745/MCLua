@@ -1,4 +1,4 @@
-package xyz.galaxyy.lualink.lua.wrappers
+package xyz.galaxyy.lualink.api.lua.wrappers
 
 import com.github.only52607.luakt.CoerceKotlinToLua
 import org.luaj.vm2.LuaTable

@@ -1,4 +1,4 @@
-package xyz.galaxyy.lualink.lua
+package xyz.galaxyy.lualink.api.lua
 
 import com.github.only52607.luakt.CoerceKotlinToLua
 import org.bukkit.Bukkit

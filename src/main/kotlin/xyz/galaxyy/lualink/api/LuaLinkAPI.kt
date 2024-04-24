@@ -6,10 +6,12 @@ import org.bukkit.plugin.java.JavaPlugin
 import org.luaj.vm2.LuaTable
 import org.luaj.vm2.lib.jse.JsePlatform
 import xyz.galaxyy.lualink.api.addons.LuaAddon
-import xyz.galaxyy.lualink.lua.*
-import xyz.galaxyy.lualink.lua.LuaAddons
-import xyz.galaxyy.lualink.lua.misc.PrintOverride
-import xyz.galaxyy.lualink.lua.wrappers.LuaEnumWrapper
+import xyz.galaxyy.lualink.api.lua.LuaAddons
+import xyz.galaxyy.lualink.api.lua.LuaImport
+import xyz.galaxyy.lualink.api.lua.LuaScheduler
+import xyz.galaxyy.lualink.api.lua.LuaUtils
+import xyz.galaxyy.lualink.api.lua.misc.PrintOverride
+import xyz.galaxyy.lualink.api.lua.wrappers.LuaEnumWrapper
 
 class LuaLinkAPI {
     //TODO: API should probably be in it's own package.
@@ -53,6 +55,8 @@ class LuaLinkAPI {
             return addonCache[name]
         }
 
+
+         // Perhaps add a "builder" for this to be able to choose which globals to add?
         fun createNewScriptEnvironment(plugin: JavaPlugin): LuaScript {
             val globals = JsePlatform.standardGlobals()
             val script = LuaScript(plugin, globals)

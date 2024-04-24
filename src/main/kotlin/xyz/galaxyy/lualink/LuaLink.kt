@@ -16,7 +16,7 @@ import xyz.galaxyy.lualink.commands.LoadedScriptParser
 import xyz.galaxyy.lualink.commands.LuaLinkCommands
 import xyz.galaxyy.lualink.listeners.ServerLoadListener
 import xyz.galaxyy.lualink.api.LuaScript
-import xyz.galaxyy.lualink.lua.LuaScriptManager
+import xyz.galaxyy.lualink.api.lua.LuaScriptManager
 import java.io.File
 import java.util.function.Function
 

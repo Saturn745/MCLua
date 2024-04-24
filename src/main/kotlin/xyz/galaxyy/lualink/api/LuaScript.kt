@@ -10,8 +10,8 @@ import org.bukkit.plugin.java.JavaPlugin
 import org.luaj.vm2.*
 import org.luaj.vm2.lib.VarArgFunction
 import org.luaj.vm2.lib.ZeroArgFunction
-import xyz.galaxyy.lualink.lua.commands.LuaCommandHandler
-import xyz.galaxyy.lualink.lua.misc.LuaLogger
+import xyz.galaxyy.lualink.api.lua.commands.LuaCommandHandler
+import xyz.galaxyy.lualink.api.lua.misc.LuaLogger
 
 // LuaScript contains the Lua script's globals, callbacks, and command and listener handlers and is used to store script state and metadata
 open class LuaScript(private val plugin: JavaPlugin, val globals: Globals) : LuaTable() {

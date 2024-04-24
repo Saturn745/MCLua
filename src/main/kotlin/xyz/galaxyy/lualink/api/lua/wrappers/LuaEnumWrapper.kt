@@ -1,4 +1,4 @@
-package xyz.galaxyy.lualink.lua.wrappers
+package xyz.galaxyy.lualink.api.lua.wrappers
 
 import org.bukkit.Material
 import org.bukkit.Sound

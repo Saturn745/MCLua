@@ -1,4 +1,4 @@
-package xyz.galaxyy.lualink.lua.misc
+package xyz.galaxyy.lualink.api.lua.misc
 
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.plugin.java.JavaPlugin

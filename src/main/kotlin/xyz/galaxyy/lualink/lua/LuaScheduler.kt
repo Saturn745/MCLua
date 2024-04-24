@@ -2,15 +2,17 @@ package xyz.galaxyy.lualink.lua
 
 import com.github.only52607.luakt.CoerceKotlinToLua
 import org.bukkit.Bukkit
+import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 import org.luaj.vm2.LuaTable
 import org.luaj.vm2.LuaValue
 import org.luaj.vm2.Varargs
 import org.luaj.vm2.lib.OneArgFunction
 import org.luaj.vm2.lib.VarArgFunction
-import xyz.galaxyy.lualink.LuaLink
+import xyz.galaxyy.lualink.api.LuaScript
 
-class LuaScheduler(private val plugin: LuaLink, private val script: LuaScript) : LuaTable() {
+// Should these be moved into the the api package?
+class LuaScheduler(private val plugin: JavaPlugin, private val script: LuaScript) : LuaTable() {
     init {
 
         // schedules single task to be executed on the next tick

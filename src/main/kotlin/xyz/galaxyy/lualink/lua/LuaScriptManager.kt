@@ -1,17 +1,14 @@
 package xyz.galaxyy.lualink.lua
 
-import com.github.only52607.luakt.lib.LuaKotlinExLib
-import com.github.only52607.luakt.lib.LuaKotlinLib
 import org.bukkit.Bukkit
 import org.bukkit.event.HandlerList
 import org.luaj.vm2.LuaError
-import org.luaj.vm2.lib.jse.JsePlatform
 import xyz.galaxyy.lualink.LuaLink
-import xyz.galaxyy.lualink.lua.misc.PrintOverride
-import xyz.galaxyy.lualink.lua.wrappers.LuaEnumWrapper
+import xyz.galaxyy.lualink.api.LuaLinkAPI
+import xyz.galaxyy.lualink.api.LuaScript
 import java.io.File
 
-class LuaScriptManager(private val plugin: LuaLink) {
+internal class LuaScriptManager(private val plugin: LuaLink) {
     private val loadedScripts: MutableList<LuaScript> = mutableListOf()
 
     fun getLoadedScripts(): List<LuaScript> {
@@ -19,20 +16,10 @@ class LuaScriptManager(private val plugin: LuaLink) {
     }
 
     fun loadScript(file: File) {
-        val globals = JsePlatform.standardGlobals()
-        val script = LuaScript(this.plugin, file, globals)
-        globals.load(LuaKotlinLib())
-        globals.load(LuaKotlinExLib())
-        globals.set("script", script)
-        globals.set("print", PrintOverride(this.plugin))
-        globals.set("utils", LuaUtils()) // Passing script to LuaUtils for state
-        globals.set("scheduler", LuaScheduler(this.plugin, script)) // Passing script to LuaScheduler for state
-        globals.set("enums", LuaEnumWrapper())
-        globals.set("import", LuaImport())
-        globals.set("addons", LuaAddons())
+        val script = LuaLinkAPI.createNewScriptEnvironment(plugin)
         this.plugin.logger.info("Loading script ${file.name}")
         try {
-            globals.loadfile(file.path).call()
+            script.globals.loadfile(file.path).call()
         } catch (e: LuaError) {
             this.plugin.logger.severe("LuaLink encountered an error while loading ${file.name}: ${e.message}")
             return
@@ -46,6 +33,8 @@ class LuaScriptManager(private val plugin: LuaLink) {
                 return
             }
         }
+        script.globals.set("__file_path", file.path)
+        script.globals.set("__file_name", file.name)
         Bukkit.getServer().javaClass.getMethod("syncCommands").invoke(Bukkit.getServer())
         this.plugin.logger.info("Loaded script ${file.name}")
     }
@@ -69,7 +58,7 @@ class LuaScriptManager(private val plugin: LuaLink) {
             try {
                 script.onUnloadCB?.call()
             } catch (e: LuaError) {
-                this.plugin.logger.severe("LuaLink encountered an error while called onUnload for ${script.file.name}: ${e.message}")
+                this.plugin.logger.severe("LuaLink encountered an error while called onUnload for ${script.globals.get("__file_name").tojstring()}: ${e.message}")
                 return
             }
         }
@@ -77,7 +66,9 @@ class LuaScriptManager(private val plugin: LuaLink) {
     }
 
     fun disableScript(script: LuaScript) {
-        script.file.renameTo(File(script.file.path+".d"))
+        val filePath = script.globals.get("__file_path").tojstring()
+        val file = File(filePath)
+        file.renameTo(File("$filePath.d"))
         this.unLoadScript(script)
     }
 

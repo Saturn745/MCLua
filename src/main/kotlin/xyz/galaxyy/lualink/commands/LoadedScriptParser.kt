@@ -4,7 +4,7 @@ import cloud.commandframework.arguments.parser.ArgumentParseResult
 import cloud.commandframework.arguments.parser.ArgumentParser
 import cloud.commandframework.context.CommandContext
 import cloud.commandframework.exceptions.parsing.NoInputProvidedException
-import xyz.galaxyy.lualink.lua.LuaScript
+import xyz.galaxyy.lualink.api.LuaScript
 import xyz.galaxyy.lualink.lua.LuaScriptManager
 import java.util.*
 

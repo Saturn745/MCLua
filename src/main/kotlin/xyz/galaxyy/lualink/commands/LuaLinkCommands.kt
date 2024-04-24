@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 import org.luaj.vm2.lib.jse.JsePlatform
 import xyz.galaxyy.lualink.LuaLink
-import xyz.galaxyy.lualink.lua.LuaScript
+import xyz.galaxyy.lualink.api.LuaScript
 import xyz.galaxyy.lualink.lua.LuaScriptManager
 import java.io.File
 

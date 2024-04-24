@@ -1,12 +1,13 @@
 package xyz.galaxyy.lualink.lua.misc
 
 import net.kyori.adventure.text.minimessage.MiniMessage
+import org.bukkit.plugin.java.JavaPlugin
 import org.luaj.vm2.LuaTable
 import org.luaj.vm2.LuaValue
 import org.luaj.vm2.lib.OneArgFunction
 import xyz.galaxyy.lualink.LuaLink
 
-class LuaLogger(private val plugin: LuaLink) : LuaTable() {
+class LuaLogger(private val plugin: JavaPlugin) : LuaTable() {
     init {
         this.set("info", object : OneArgFunction() {
             override fun call(arg: LuaValue): LuaValue? {

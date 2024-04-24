@@ -1,20 +1,19 @@
-package xyz.galaxyy.lualink.lua
+package xyz.galaxyy.lualink.api
 
 import com.github.only52607.luakt.CoerceKotlinToLua
 import org.bukkit.Bukkit
 import org.bukkit.event.Event
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
+import org.bukkit.plugin.java.JavaPlugin
 import org.luaj.vm2.*
 import org.luaj.vm2.lib.VarArgFunction
 import org.luaj.vm2.lib.ZeroArgFunction
-import xyz.galaxyy.lualink.LuaLink
 import xyz.galaxyy.lualink.lua.commands.LuaCommandHandler
 import xyz.galaxyy.lualink.lua.misc.LuaLogger
-import java.io.File
 
 // LuaScript contains the Lua script's globals, callbacks, and command and listener handlers and is used to store script state and metadata
-class LuaScript(private val plugin: LuaLink, val file: File, val globals: Globals) : LuaTable() {
+open class LuaScript(private val plugin: JavaPlugin, val globals: Globals) : LuaTable() {
     internal var onLoadCB: LuaValue? = null
         private set
 

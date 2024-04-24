@@ -6,6 +6,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.entity.Player
+import org.bukkit.plugin.java.JavaPlugin
 import org.luaj.vm2.LuaError
 import org.luaj.vm2.LuaFunction
 import org.luaj.vm2.LuaTable
@@ -13,7 +14,7 @@ import org.luaj.vm2.LuaValue
 import xyz.galaxyy.lualink.LuaLink
 
 
-class LuaCommandHandler(private val plugin: LuaLink, private val callback: LuaFunction, private val metadata: LuaTable) : Command(metadata.get("name").tojstring()) {
+class LuaCommandHandler(private val plugin: JavaPlugin, private val callback: LuaFunction, private val metadata: LuaTable) : Command(metadata.get("name").tojstring()) {
     init {
         if (!this.metadata.get("description").isnil())
             this.description = this.metadata.get("description").tojstring()

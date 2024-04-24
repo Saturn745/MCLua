@@ -9,7 +9,7 @@ import xyz.galaxyy.lualink.lua.LuaScriptManager
 import java.io.File
 import java.util.*
 
-class AvailableScriptParser<C: Any>(private val plugin: LuaLink, private val scriptManager: LuaScriptManager)  : ArgumentParser<C, File> {
+internal class AvailableScriptParser<C: Any>(private val plugin: LuaLink, private val scriptManager: LuaScriptManager)  : ArgumentParser<C, File> {
     override fun parse(commandContext: CommandContext<C>, inputQueue: Queue<String>): ArgumentParseResult<File> {
         val input = inputQueue.peek()
             ?: return ArgumentParseResult.failure(NoInputProvidedException(AvailableScriptParser::class.java, commandContext))
@@ -17,7 +17,7 @@ class AvailableScriptParser<C: Any>(private val plugin: LuaLink, private val scr
         val file = File(this.plugin.dataFolder, "scripts/$input")
         return if (file.exists()) {
             val loadedScripts = this.scriptManager.getLoadedScripts()
-            val isAlreadyLoaded = loadedScripts.any { it.file == file }
+            val isAlreadyLoaded = loadedScripts.any { it.globals.get("__file_name").tojstring() == input }
 
             if (!isAlreadyLoaded) {
                 // Remove the input from the queue

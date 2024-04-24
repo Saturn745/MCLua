@@ -16,12 +16,12 @@ import xyz.galaxyy.lualink.lua.LuaScriptManager
 import java.io.File
 
 @Suppress("unused")
-class LuaLinkCommands(private val plugin: LuaLink, private val scriptManager: LuaScriptManager) {
+internal class LuaLinkCommands(private val plugin: LuaLink, private val scriptManager: LuaScriptManager) {
     @CommandDescription("Reload a Lua script")
     @CommandMethod("lualink reload <script>")
     @CommandPermission("lualink.scripts.reload")
     fun reloadScript(sender: CommandSender, @Argument("script") script: LuaScript) {
-        val fileName = script.file.name
+        val fileName = script.globals.get("__file_name").tojstring()
         this.scriptManager.unLoadScript(script)
         this.scriptManager.loadScript(File(this.plugin.dataFolder, "scripts/$fileName"))
         sender.sendRichMessage("<green>Reloaded script <yellow>$fileName<green>.")
@@ -32,7 +32,7 @@ class LuaLinkCommands(private val plugin: LuaLink, private val scriptManager: Lu
     @CommandPermission("lualink.scripts.unload")
     fun unloadScript(sender: CommandSender, @Argument("script") script: LuaScript) {
         this.scriptManager.unLoadScript(script)
-        sender.sendRichMessage("<green>Unloaded script <yellow>${script.file.name}<green>.")
+        sender.sendRichMessage("<green>Unloaded script <yellow>${script.globals.get("__file_name").tojstring()}<green>.")
     }
 
     @CommandDescription("Load a Lua script")
@@ -48,7 +48,7 @@ class LuaLinkCommands(private val plugin: LuaLink, private val scriptManager: Lu
     @CommandPermission("lualink.scripts.disable")
     fun disableScript(sender: CommandSender, @Argument("script") script: LuaScript) {
         scriptManager.disableScript(script)
-        sender.sendRichMessage("<green>Disabled and unloaded script <yellow>${script.file.name}<green>.")
+        sender.sendRichMessage("<green>Disabled and unloaded script <yellow>${script.globals.get("__file_name").tojstring()}<green>.")
     }
 
     @Suggestions("disabledScripts")

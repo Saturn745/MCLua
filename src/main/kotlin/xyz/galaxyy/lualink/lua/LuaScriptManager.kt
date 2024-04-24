@@ -1,7 +1,5 @@
 package xyz.galaxyy.lualink.lua
 
-import org.bukkit.Bukkit
-import org.bukkit.event.HandlerList
 import org.luaj.vm2.LuaError
 import xyz.galaxyy.lualink.LuaLink
 import xyz.galaxyy.lualink.api.LuaLinkAPI
@@ -35,25 +33,12 @@ internal class LuaScriptManager(private val plugin: LuaLink) {
         }
         script.globals.set("__file_path", file.path)
         script.globals.set("__file_name", file.name)
-        Bukkit.getServer().javaClass.getMethod("syncCommands").invoke(Bukkit.getServer())
+        script.initialize() // Call the generic init method
         this.plugin.logger.info("Loaded script ${file.name}")
     }
 
     fun unLoadScript(script: LuaScript) {
-        script.listeners.forEach { listener ->
-            HandlerList.unregisterAll(listener)
-        }
-        script.commands.forEach { command ->
-            command.unregister(this.plugin.server.commandMap)
-            this.plugin.server.commandMap.knownCommands.remove(command.name)
-            command.aliases.forEach { alias ->
-                this.plugin.server.commandMap.knownCommands.remove(alias)
-            }
-            Bukkit.getServer().javaClass.getMethod("syncCommands").invoke(Bukkit.getServer())
-        }
-        script.tasks.forEach { taskId ->
-            Bukkit.getScheduler().cancelTask(taskId)
-        }
+        script.cleanup() // Call the generic cleanup method
         if (script.onUnloadCB?.isfunction() == true) {
             try {
                 script.onUnloadCB?.call()

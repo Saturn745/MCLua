@@ -4,6 +4,7 @@ import com.github.only52607.luakt.CoerceKotlinToLua
 import org.bukkit.Bukkit
 import org.bukkit.event.Event
 import org.bukkit.event.EventPriority
+import org.bukkit.event.HandlerList
 import org.bukkit.event.Listener
 import org.bukkit.plugin.java.JavaPlugin
 import org.luaj.vm2.*
@@ -82,6 +83,24 @@ open class LuaScript(private val plugin: JavaPlugin, val globals: Globals) : Lua
                 return CoerceKotlinToLua.coerce(Bukkit.getServer())
             }
         })
+    }
+
+    fun initialize() {
+        Bukkit.getServer().javaClass.getMethod("syncCommands").invoke(Bukkit.getServer())
+    }
+
+    fun cleanup() {
+        this.listeners.forEach { listener ->
+            HandlerList.unregisterAll(listener)
+        }
+        this.commands.forEach { command ->
+            command.unregister(this.plugin.server.commandMap)
+            this.plugin.server.commandMap.knownCommands.remove(command.name)
+            command.aliases.forEach { alias ->
+                this.plugin.server.commandMap.knownCommands.remove(alias)
+            }
+        }
+        Bukkit.getServer().javaClass.getMethod("syncCommands").invoke(Bukkit.getServer())
     }
 
     private fun registerCommand(callback: LuaFunction, metadata: LuaTable) {

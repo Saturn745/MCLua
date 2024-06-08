@@ -24,7 +24,6 @@ repositories {
     maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
-val cloudVersion: String by project
 val luaKTVersion: String by project
 
 dependencies {
@@ -40,9 +39,9 @@ dependencies {
     api("com.github.only52607.luakt:luakt-core:$luaKTVersion")
     api("com.github.only52607.luakt:luakt-extension:$luaKTVersion")
     api("com.github.only52607.luakt:luakt-luaj:$luaKTVersion")
-    library("cloud.commandframework:cloud-paper:$cloudVersion")
-    library("cloud.commandframework:cloud-brigadier:$cloudVersion")
-    library("cloud.commandframework:cloud-annotations:$cloudVersion")
+    library("org.incendo:cloud-paper:2.0.0-beta.8")
+    library("org.incendo:cloud-brigadier:2.0.0-beta.8")
+    library("org.incendo:cloud-annotations:2.0.0-rc.2")
 }
 
 paper {
@@ -128,10 +127,15 @@ publishing {
 
 tasks.test { useJUnitPlatform() }
 
-tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "17"
+    kotlinOptions.javaParameters = true
+}
+
 kotlin {
     jvmToolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
+
 application { mainClass.set("MainKt") }

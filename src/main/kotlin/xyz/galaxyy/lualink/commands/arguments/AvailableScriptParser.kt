@@ -1,5 +1,6 @@
 package xyz.galaxyy.lualink.commands.arguments
 
+import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.command.CommandSender
 import org.incendo.cloud.annotations.parser.Parser
 import org.incendo.cloud.annotations.suggestion.Suggestions
@@ -16,9 +17,9 @@ class AvailableScriptParser(private val plugin: LuaLink, private val scriptManag
     fun parse(context: CommandContext<CommandSender>, input: CommandInput) : File {
         val value = input.readString()
         val file = File(this.plugin.dataFolder, "scripts" + File.separator + value)
-        // Throwing exception if file exists, is a directory or is already loaded.
-        if (!file.exists() || file.isDirectory || this.scriptManager.getLoadedScripts().any { it.file.name.equals(file.name) })
-            throw ReplyingParseException { context.sender().sendRichMessage("<red>Script <yellow>$value <red>has not been found or is already loaded.") }
+        // Throwing exception if file exists, is a directory, is not a .lua file or is already loaded.
+        if (!file.exists() || file.isDirectory || file.extension != "lua" || this.scriptManager.getLoadedScripts().any { it.file.name.equals(file.name) })
+            throw ReplyingParseException { context.sender().sendRichMessage("<red>Script <yellow>${MiniMessage.miniMessage().stripTags(value)} <red>has not been found or is already loaded.") }
         // Returning the value.
         return file
     }
@@ -26,7 +27,7 @@ class AvailableScriptParser(private val plugin: LuaLink, private val scriptManag
     @Suggestions("available_scripts")
     fun suggest(context: CommandContext<CommandSender>, input: CommandInput) : Iterable<String> {
         return File(this.plugin.dataFolder, "scripts").listFiles()
-            ?.filter { !this.scriptManager.getLoadedScripts().any { script -> script.file.name.equals(it.name) } }
+            ?.filter { it.extension == "lua" && !it.name.contains(' ') && !this.scriptManager.getLoadedScripts().any { script -> script.file.name.equals(it.name) } }
             ?.map { it.name } ?: emptyList()
     }
 

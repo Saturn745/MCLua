@@ -1,5 +1,6 @@
 package xyz.galaxyy.lualink.commands.arguments
 
+import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.command.CommandSender
 import org.incendo.cloud.annotations.parser.Parser
 import org.incendo.cloud.annotations.suggestion.Suggestions
@@ -16,7 +17,7 @@ class LoadedScriptParser(private val scriptManager: LuaScriptManager) {
         val value = input.readString()
         val script = this.scriptManager.getLoadedScripts().find { it.file.name == value }
         // Returning the value or throwing exception if null.
-        return script ?: throw ReplyingParseException { context.sender().sendRichMessage("<red>Script <yellow>$value <red>has not been found or is not loaded.") }
+        return script ?: throw ReplyingParseException { context.sender().sendRichMessage("<red>Script <yellow>${MiniMessage.miniMessage().stripTags(value)} <red>has not been found or is not loaded.") }
     }
 
     @Suggestions("loaded_scripts")

@@ -25,6 +25,8 @@ repositories {
 }
 
 val luaKTVersion: String by project
+val cloudMinecraftVersion: String by project
+val cloudAnnotationsVersion: String by project
 
 dependencies {
     testImplementation(kotlin("test"))
@@ -39,9 +41,9 @@ dependencies {
     api("com.github.only52607.luakt:luakt-core:$luaKTVersion")
     api("com.github.only52607.luakt:luakt-extension:$luaKTVersion")
     api("com.github.only52607.luakt:luakt-luaj:$luaKTVersion")
-    library("org.incendo:cloud-paper:2.0.0-beta.8")
-    library("org.incendo:cloud-brigadier:2.0.0-beta.8")
-    library("org.incendo:cloud-annotations:2.0.0-rc.2")
+    library("org.incendo:cloud-paper:$cloudMinecraftVersion")
+    library("org.incendo:cloud-brigadier:$cloudMinecraftVersion")
+    library("org.incendo:cloud-annotations:$cloudAnnotationsVersion")
 }
 
 paper {
